@@ -1,7 +1,7 @@
 package hdate
 
 /*
-  #cgo pkg-config: hdate
+  #cgo pkg-config: libhdate
   #cgo LDFLAGS: -lhdate
   #include <hdate.h>
 */
