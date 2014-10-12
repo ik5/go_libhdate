@@ -1,8 +1,8 @@
 package hdate
 
 /*
-  //#cgo pkg-config: hdate
-  //#cgo LDFALGS: -lhdate
+  #cgo pkg-config: hdate
+  #cgo LDFLAGS: -lhdate
   #include <hdate.h>
 */
 import "C"
