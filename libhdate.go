@@ -1,8 +1,8 @@
 package hdate
 
 /*
-  #cgo pkg-config: hdate
-  #cgo LDFALGS: -lhdate
+  //#cgo pkg-config: hdate
+  //#cgo LDFALGS: -lhdate
   #include <hdate.h>
 */
 import "C"
@@ -66,14 +66,14 @@ type Struct struct {
 }
 
 /**
- compute date structure from the Gregorian date
+compute date structure from the Gregorian date
 
- d Day of month 1..31
- m Month 1..12
-   if m or d is 0 return current date.
- y Year in 4 digits e.g. 2001
-  */
+d Day of month 1..31
+m Month 1..12
+  if m or d is 0 return current date.
+y Year in 4 digits e.g. 2001
+*/
 
 func (h *Struct) Set_gdate(d, m, y C.int) {
-  return C.hdate_set_gdate(h, d, m ,y)
+	return C.hdate_set_gdate(h, d, m, y)
 }
