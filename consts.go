@@ -27,35 +27,51 @@ const (
 	HEBREW_WNUMBER_BUFFER_SIZE = 9
 
 	// for function hdate_string: identifies string type: integer
-	HDATE_STRING_INT = 0
+	STRING_INT = 0
 
 	// for function hdate_string: identifies string type: day of week
-	HDATE_STRING_DOW = 1
+	STRING_DOW = 1
 
 	// for function hdate_string: identifies string type: parasha
-	HDATE_STRING_PARASHA = 2
+	STRING_PARASHA = 2
 
 	// for function hdate_string: identifies string type: hebrew_month
-	HDATE_STRING_HMONTH = 3
+	STRING_HMONTH = 3
 
 	// for function hdate_string: identifies string type: gregorian_month
-	HDATE_STRING_GMONTH = 4
+	STRING_GMONTH = 4
 
 	// for function hdate_string: identifies string type: holiday
-	HDATE_STRING_HOLIDAY = 5
+	STRING_HOLIDAY = 5
 
 	// for function hdate_string: identifies string type: holiday
-	HDATE_STRING_OMER = 6
+	STRING_OMER = 6
 
 	// for function hdate_string: use short form, if one exists
-	HDATE_STRING_SHORT = 1
+	STRING_SHORT = 1
 
 	// for function hdate_string: use long form
-	HDATE_STRING_LONG = 0
+	STRING_LONG = 0
 
 	// for function hdate_string: use embedded hebrew string
-	HDATE_STRING_HEBREW = 1
+	STRING_HEBREW = 1
 
 	// for function hdate_string: use local locale string
-	HDATE_STRING_LOCAL = 0
+	STRING_LOCAL = 0
+
+	HOLIDAY_NORMAL_DAY         = 0
+	HOLIDAY_YOM_TOV            = 1
+	HOLIDAY_EREV_YOM_KIPPUR    = 2
+	HOLIDAY_HOL_HAMOED         = 3
+	HOLIDAY_HANUKA             = 4
+	HOLIDAY_PURIM              = 4
+	HOLIDAY_TZOMOT             = 5
+	HOLIDAY_INDEPENDACE_DAY    = 6
+	HOLIDAY_JERUSALEM_DAY      = 6
+	HOLIDAY_LAG_BAOMER         = 7
+	HOLIDAY_TU_BEAV            = 7
+	HOLIDAY_TU_BESVAT          = 7
+	HOLIDAY_IDF_MEMORIAL       = 8
+	HOLIDAY_HOLOCAUST_MEMORIAL = 8
+	HOLIDAY_NATIONAL_DAY       = 9
 )
