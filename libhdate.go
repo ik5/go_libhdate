@@ -109,3 +109,14 @@ func (h *Hdate_Struct) Get_Format_Date(diaspora, s C.int) string {
 
 	return str
 }
+
+/**
+ get the number of hebrew parasha.
+
+ param diaspora if true give diaspora readings
+ return the number of parasha 1. Bereshit etc..
+   (55 through 61 are joined strings e.g. Vayakhel Pekudei)
+*/
+func (h *Hdate_Struct) Get_Parasha(diaspora C.int) C.int {
+  return C.hdate_get_parasha(&h.d, diaspora)
+}
