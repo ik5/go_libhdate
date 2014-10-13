@@ -98,3 +98,13 @@ return the number of holiday.
 func (h *Hdate_Struct) Get_Holyday(diaspora C.int) C.int {
 	return C.hdate_get_holyday(&h.d, diaspora)
 }
+
+/**
+Return the day in the omer of the given date
+
+param h The hdate_struct of the date to use.
+return The day in the omer, starting from 1 (or 0 if not in sfirat ha omer)
+*/
+func (h *Hdate_Struct) Get_Omer_Day() C.int {
+	return C.hdate_get_omer_day(&h.d)
+}
