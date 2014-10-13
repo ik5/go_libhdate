@@ -59,4 +59,3 @@ const (
 	// for function hdate_string: use local locale string
 	HDATE_STRING_LOCAL = 0
 )
-

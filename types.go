@@ -4,4 +4,3 @@ package hdate
 type Hdate_Struct struct {
 	d C.hdate_struct
 }
-
