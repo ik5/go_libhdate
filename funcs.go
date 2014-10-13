@@ -144,12 +144,26 @@ func Days_from_3744(year C.int) C.int {
 }
 
 /**
- @brief Return Hebrew year type based on size and first week day of year.
- 
- @param size_of_year Length of year in days
- @param new_year_dw First week day of year
- @return the number for year type (1..14)
+Return Hebrew year type based on size and first week day of year.
+
+param size_of_year Length of year in days
+param new_year_dw First week day of year
+return the number for year type (1..14)
 */
 func Get_Year_Type(year_size, new_year_dw C.int) C.int {
   return C.hdate_get_year_type(year_size, new_year_dw)
+}
+
+/**
+Compute Julian day from Gregorian date
+
+author Yaacov Zamir (algorithm from Henry F. Fliegel and Thomas C. Van Flandern ,1968)
+
+param day Day of month 1..31
+param month Month 1..12
+param year Year in 4 digits e.g. 2001
+return the julian day number
+ */
+func GDate_to_JD(day, month, year C.int) C.int {
+  return C.hdate_gdate_to_jd(day, month, year)
 }
