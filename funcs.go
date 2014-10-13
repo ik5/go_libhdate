@@ -142,3 +142,14 @@ return Number of days since 3,1,3744
 func Days_from_3744(year C.int) C.int {
   return C.hdate_days_from_3744(year)
 }
+
+/**
+ @brief Return Hebrew year type based on size and first week day of year.
+ 
+ @param size_of_year Length of year in days
+ @param new_year_dw First week day of year
+ @return the number for year type (1..14)
+*/
+func Get_Year_Type(year_size, new_year_dw C.int) C.int {
+  return C.hdate_get_year_type(year_size, new_year_dw)
+}
