@@ -2,11 +2,12 @@ package hdate
 
 /*
   #cgo pkg-config: libhdate
-  #cgo LDFLAGS: -lhdate
+  //cgo LDFLAGS: -lhdate
   #include <hdate.h>
 */
 import "C"
-import "unsafe"
+//import "unsafe"
+import "fmt"
 
 const (
 	// use diaspora dates and holydays flag
@@ -36,33 +37,8 @@ const (
 )
 
 // libdate Heberew date struct
-type Struct struct {
-	/** The number of day in the hebrew month (1..31). */
-	hd_day C.int
-	/** The number of the hebrew month 1..14 (1 - tishre, 13 - adar 1, 14 - adar 2). */
-	hd_mon C.int
-	/** The number of the hebrew year. */
-	hd_year C.int
-	/** The number of the day in the month. (1..31) */
-	gd_day C.int
-	/** The number of the month 1..12 (1 - jan). */
-	gd_mon C.int
-	/** The number of the year. */
-	gd_year C.int
-	/** The day of the week 1..7 (1 - sunday). */
-	hd_dw C.int
-	/** The length of the year in days. */
-	hd_size_of_year C.int
-	/** The week day of Hebrew new year. */
-	hd_new_year_dw C.int
-	/** The number type of year. */
-	hd_year_type C.int
-	/** The Julian day number */
-	hd_jd C.int
-	/** The number of days passed since 1 tishrey */
-	hd_days C.int
-	/** The number of weeks passed since 1 tishrey */
-	hd_weeks C.int
+type Hdate_Struct struct {
+  d C.hdate_struct
 }
 
 /**
@@ -74,6 +50,8 @@ m Month 1..12
 y Year in 4 digits e.g. 2001
 */
 
-func (h *Struct) Set_gdate(d, m, y C.int) {
-	return C.hdate_set_gdate(h, d, m, y)
+func (h *Hdate_Struct) Set_gdate(d, m, y C.int) {
+  hdate := C.hdate_set_gdate(&h.d, d, m, y)
+  fmt.Printf("%v\n", hdate)
+
 }
