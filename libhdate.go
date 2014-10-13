@@ -3,11 +3,11 @@ package hdate
 /*
   #cgo pkg-config: libhdate
   //cgo LDFLAGS: -lhdate
+  #include <stdlib.h>
   #include <hdate.h>
 */
 import "C"
-//import "unsafe"
-import "fmt"
+import "unsafe"
 
 const (
 	// use diaspora dates and holydays flag
@@ -52,7 +52,7 @@ y Year in 4 digits e.g. 2001
 
 func (h *Hdate_Struct) Set_Gdate(d, m, y C.int) {
   hdate := C.hdate_set_gdate(&h.d, d, m, y)
-  if *hdate != &h.d {
+  if hdate != &h.d {
     h.d = *hdate
   }
 }
@@ -67,7 +67,7 @@ func (h *Hdate_Struct) Set_Gdate(d, m, y C.int) {
  */
 func (h *Hdate_Struct) Set_Hdate(d, m, y C.int) {
   hdate := C.hdate_set_hdate(&h.d, d, m, y)
-  if *hdate != &h.d {
+  if hdate != &h.d {
     h.d = *hdate
   }
 }
@@ -78,8 +78,8 @@ func (h *Hdate_Struct) Set_Hdate(d, m, y C.int) {
  jd the julian day number.
 */
 func (h *Hdate_Struct) Set_jd(jd C.int) {
-  hdate := C.hdate_set_js(&h.d, jd)
-  if *hdate != &h.d {
+  hdate := C.hdate_set_jd(&h.d, jd)
+  if hdate != &h.d {
     h.d = *hdate
   }
 }
@@ -100,14 +100,14 @@ func (h *Hdate_Struct) Set_jd(jd C.int) {
 */
 func (h *Hdate_Struct) Get_Format_Date(diaspora, s C.int) string {
   var ch *C.char
-  s := ""
+  str := ""
 
   ch = C.hdate_get_format_date(&h.d, diaspora, s)
   if ch != nil {
-    s = C.GoString(ch)
-    C.free(ch)
+    str = C.GoString(ch)
+    C.free(unsafe.Pointer(ch))
   }
 
-  return s
+  return str
 }
 
