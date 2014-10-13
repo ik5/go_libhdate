@@ -52,6 +52,8 @@ y Year in 4 digits e.g. 2001
 
 func (h *Hdate_Struct) Set_gdate(d, m, y C.int) {
   hdate := C.hdate_set_gdate(&h.d, d, m, y)
-  fmt.Printf("%v\n", hdate)
+  if *hdate != &h.d {
+    h.d = *hdate
+  }
 
 }
