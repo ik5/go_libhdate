@@ -11,5 +11,5 @@ type Hdate_Struct struct {
 type Hdate_Julian struct {
 	JD_Tishrey1           C.int
 	JD_Tishrey1_Next_Year C.int
-	Size                  C.int
+	Day                   C.int
 }
