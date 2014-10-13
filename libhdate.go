@@ -84,4 +84,30 @@ func (h *Hdate_Struct) Set_jd(jd C.int) {
   }
 }
 
+/**
+ Return a string, with the hebrew date.
+
+ return empty string upon failure, upon success, a string containing the
+ short ( e.g. "1 Tishrey" ) or long (e.g. "Tuesday 18 Tishrey 5763 Hol hamoed
+ Sukot" ) formated date. You must free() the pointer after use.
+
+ param diaspora if true give diaspora holydays
+ param short_format A short flag (true - returns a short string, false returns a long string).
+
+ warning This was originally written using a local static string,
+          calling for output to be copied away.
+
+*/
+func (h *Hdate_Struct) Get_Format_Date(diaspora, s C.int) string {
+  var ch *C.char
+  s := ""
+
+  ch = C.hdate_get_format_date(&h.d, diaspora, s)
+  if ch != nil {
+    s = C.GoString(ch)
+    C.free(ch)
+  }
+
+  return s
+}
 
