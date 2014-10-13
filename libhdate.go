@@ -60,7 +60,6 @@ func (h *Hdate_Struct) Set_Gdate(d, m, y C.int) {
 /**
  compute date structure from the Hebrew date
 
- h pointer this hdate struct.
  d Day of month 1..31
  m Month 1..14 ,(13 - Adar 1, 14 - Adar 2)
  	if m or d is 0 return current date.
@@ -72,4 +71,17 @@ func (h *Hdate_Struct) Set_Hdate(d, m, y C.int) {
     h.d = *hdate
   }
 }
+
+/**
+ compute date structure from the Julian day
+
+ jd the julian day number.
+*/
+func (h *Hdate_Struct) Set_jd(jd C.int) {
+  hdate := C.hdate_set_js(&h.d, jd)
+  if *hdate != &h.d {
+    h.d = *hdate
+  }
+}
+
 
