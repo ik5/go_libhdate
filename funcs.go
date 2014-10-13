@@ -130,3 +130,15 @@ return size of Hebrew year
 func Get_Hebrew_Year_Size(year C.int) C.int {
   return C.hdate_get_size_of_hebrew_year(year)
 }
+
+/**
+Days since Tishrey 3744
+
+author Amos Shapir 1984 (rev. 1985, 1992) Yaacov Zamir 2003-2005
+
+param hebrew_year The Hebrew year
+return Number of days since 3,1,3744
+*/
+func Days_from_3744(year C.int) C.int {
+  return C.hdate_days_from_3744(year)
+}
