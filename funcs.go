@@ -120,3 +120,13 @@ return the number of holyday type.
 func Get_Holyday_Type(holyday C.int) C.int {
   return C.hdate_get_holyday_type(holyday)
 }
+
+/**
+size of hebrew year in days.
+
+param hebrew_year the hebrew year.
+return size of Hebrew year
+*/
+func Get_Hebrew_Year_Size(year C.int) C.int {
+  return C.hdate_get_size_of_hebrew_year(year)
+}
