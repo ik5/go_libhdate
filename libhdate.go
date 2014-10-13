@@ -33,6 +33,39 @@ const (
 	*/
 	HEBREW_NUMBER_BUFFER_SIZE  = 17
 	HEBREW_WNUMBER_BUFFER_SIZE = 9
+
+	// for function hdate_string: identifies string type: integer
+	HDATE_STRING_INT = 0
+
+	// for function hdate_string: identifies string type: day of week
+	HDATE_STRING_DOW = 1
+
+	// for function hdate_string: identifies string type: parasha
+	HDATE_STRING_PARASHA = 2
+
+	// for function hdate_string: identifies string type: hebrew_month
+	HDATE_STRING_HMONTH = 3
+
+	// for function hdate_string: identifies string type: gregorian_month
+	HDATE_STRING_GMONTH = 4
+
+	// for function hdate_string: identifies string type: holiday
+	HDATE_STRING_HOLIDAY = 5
+
+	// for function hdate_string: identifies string type: holiday
+	HDATE_STRING_OMER = 6
+
+	// for function hdate_string: use short form, if one exists
+	HDATE_STRING_SHORT = 1
+
+	// for function hdate_string: use long form
+	HDATE_STRING_LONG = 0
+
+	// for function hdate_string: use embedded hebrew string
+	HDATE_STRING_HEBREW = 1
+
+	// for function hdate_string: use local locale string
+	HDATE_STRING_LOCAL = 0
 )
 
 // libdate Heberew date struct
@@ -111,12 +144,12 @@ func (h *Hdate_Struct) Get_Format_Date(diaspora, s C.int) string {
 }
 
 /**
- get the number of hebrew parasha.
+get the number of hebrew parasha.
 
- param diaspora if true give diaspora readings
- return the number of parasha 1. Bereshit etc..
-   (55 through 61 are joined strings e.g. Vayakhel Pekudei)
+param diaspora if true give diaspora readings
+return the number of parasha 1. Bereshit etc..
+  (55 through 61 are joined strings e.g. Vayakhel Pekudei)
 */
 func (h *Hdate_Struct) Get_Parasha(diaspora C.int) C.int {
-  return C.hdate_get_parasha(&h.d, diaspora)
+	return C.hdate_get_parasha(&h.d, diaspora)
 }
