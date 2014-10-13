@@ -108,3 +108,15 @@ return The day in the omer, starting from 1 (or 0 if not in sfirat ha omer)
 func (h *Hdate_Struct) Get_Omer_Day() C.int {
 	return C.hdate_get_omer_day(&h.d)
 }
+
+/**
+Return number of hebrew holyday type.
+
+Holiday types: set as constants as HOLYDAY_XXXX
+
+param holyday the holyday number
+return the number of holyday type.
+*/
+func Get_Holyday_Type(holyday C.int) C.int {
+  return C.hdate_get_holyday_type(holyday)
+}
