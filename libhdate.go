@@ -50,10 +50,26 @@ m Month 1..12
 y Year in 4 digits e.g. 2001
 */
 
-func (h *Hdate_Struct) Set_gdate(d, m, y C.int) {
+func (h *Hdate_Struct) Set_Gdate(d, m, y C.int) {
   hdate := C.hdate_set_gdate(&h.d, d, m, y)
   if *hdate != &h.d {
     h.d = *hdate
   }
-
 }
+
+/**
+ compute date structure from the Hebrew date
+
+ h pointer this hdate struct.
+ d Day of month 1..31
+ m Month 1..14 ,(13 - Adar 1, 14 - Adar 2)
+ 	if m or d is 0 return current date.
+ y Year in 4 digits e.g. 5731
+ */
+func (h *Hdate_Struct) Set_Hdate(d, m, y C.int) {
+  hdate := C.hdate_set_hdate(&h.d, d, m, y)
+  if *hdate != &h.d {
+    h.d = *hdate
+  }
+}
+
