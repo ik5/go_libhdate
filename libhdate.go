@@ -2,7 +2,6 @@ package hdate
 
 /*
   #cgo pkg-config: libhdate
-  //cgo LDFLAGS: -lhdate
   #include <stdlib.h>
   #include <hdate.h>
 */
