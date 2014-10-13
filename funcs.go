@@ -95,6 +95,6 @@ get the number of hebrew holiday.
 diaspora if true give diaspora holidays
 return the number of holiday.
 */
-func (h *Hdate_Struct) Get_Holydat(diaspora C.int) C.int {
-	return C.hdate_get_holydat(&h.d, diaspora)
+func (h *Hdate_Struct) Get_Holyday(diaspora C.int) C.int {
+	return C.hdate_get_holyday(&h.d, diaspora)
 }
