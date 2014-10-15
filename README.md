@@ -11,25 +11,26 @@ To install the package:
    go get github.com/ik5/go_libhdate
 
 Simple usage:
-   package main
 
-   import (
-           "fmt"
-           "github.com/ik5/go_libhdate"
-   )
+     package main
 
-   func main() {
-        h := hdate.Init()
-        defer h.Destruct()
+     import (
+             "fmt"
+             "github.com/ik5/go_libhdate"
+     )
 
-        // Gregorian date
-        fmt.Println("Today is:")
-        fmt.Printf("%d, %d, %d\n", h.Get_GDay(), h.Get_GMonth(), h.Get_GYear())
+     func main() {
+          h := hdate.Init()
+          defer h.Destruct()
 
-        // print hebrew date: 0 - israely holidays, 0 - long format
-        fmt.Printf("%s\n\n", h.Get_Format_Date(0, 0))
+          // Gregorian date
+          fmt.Println("Today is:")
+          fmt.Printf("%d, %d, %d\n", h.Get_GDay(), h.Get_GMonth(), h.Get_GYear())
 
-   }
+          // print hebrew date: 0 - israely holidays, 0 - long format
+          fmt.Printf("%s\n\n", h.Get_Format_Date(0, 0))
+     }
+
 
 License
 -------
