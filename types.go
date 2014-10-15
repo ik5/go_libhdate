@@ -18,3 +18,15 @@ type Sunrise_Sunset struct {
 	Sunrise C.int
 	Sunset  C.int
 }
+
+type Sun_Time struct {
+  Sun_Hourt    C.int
+  First_Lighr  C.int
+  Talit        C.int
+  Sunrise      C.int
+  MidDay       C.int
+  Sunset       C.int
+  First_Starts C.int
+  Three_Starts C.int
+}
+
