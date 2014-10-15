@@ -208,3 +208,37 @@ return the days from 1 jan
 func Get_Day_of_Year(day, month, year C.int) C.int {
 	return C.hdate_get_day_of_year(day, month, year)
 }
+
+/**
+utc sun times for altitude at a gregorian date
+
+Returns the sunset and sunrise times in minutes from 00:00 (utc time)
+if sun altitude in sunrise is deg degries.
+This function only works for altitudes sun realy is.
+If the sun never get to this altitude, the returned sunset and sunrise values
+will be negative. This can happen in low altitude when latitude is
+nearing the pols in winter times, the sun never goes very high in
+the sky there.
+
+param day this day of month
+param month this month
+param year this year
+param longitude longitude to use in calculations
+param latitude latitude to use in calculations
+param deg degrees of sun's altitude (0 -  Zenith .. 90 - Horizon)
+
+return:
+param sunrise return the utc sunrise in minutes
+param sunset return the utc sunset in minutes
+*/
+func Get_UTC_Sun_Time_Deg(day, month, year C.int, latitude, longitude, deg C.double) Sunrise_Sunset {
+  var sunrise, sunset C.int
+  C.hdate_get_utc_sun_time_deg(day, month, year, latitude, longitude, deg, &sunrise, &sunset)
+
+  return Sunrise_Sunset{
+    Sunrise: sunrise,
+    Sunset: sunset,
+  }
+}
+
+
