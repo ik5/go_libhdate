@@ -447,3 +447,33 @@ func Is_Hebrew_Locale() bool {
   locale := C.hdate_is_hebrew_locale()
   return locale == -1
 }
+
+/**
+ Return string values for hdate information
+
+ param type_of_string 	0 = integer, 1 = day of week, 2 = parshaot,
+						3 = hmonth, 4 = gmonth, 5 = holiday, 6 = omer
+ param index			integer		( 0 < n < 11000)
+						day of week ( 0 < n <  8 )
+						parshaot	( 0 , n < 62 )
+						hmonth		( 0 < n < 15 )
+						gmonth		( 0 < n < 13 )
+						holiday		( 0 < n < 37 )
+						omer		( 0 < n < 50 )
+ param short_form   0 = short format
+ param hebrew_form  0 = not hebrew (native/embedded)
+
+ return  a string containing the information.
+         return empty string upon failure.
+*/
+func Hdate_String(string_type, index, short_form, hebrew_form C.int) string {
+  ch := C.hdate_string(string_type, index, short_form, hebrew_form)
+  result := ""
+
+  if ch != nil {
+    result = C.GoString(ch)
+    C.free(unsafe.Pointer(ch))
+  }
+
+  return result
+}
