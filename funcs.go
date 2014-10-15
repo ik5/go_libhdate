@@ -15,7 +15,8 @@ return Zero'd Hdate_Struct
 */
 func Init() *Hdate_Struct {
 	var h *Hdate_Struct
-  d := C.new_hdate()
+  var d *C.hdate_struct
+  d = C.new_hdate()
   h.d = d
 
 	return h
