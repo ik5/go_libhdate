@@ -8,7 +8,8 @@ I have provided an example file (At the moment, it does not calculate time
 properly).
 
 To install the package:
-   go get github.com/ik5/go_libhdate
+
+    go get github.com/ik5/go_libhdate
 
 Simple usage:
 
