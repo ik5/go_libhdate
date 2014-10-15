@@ -21,7 +21,7 @@ type Sunrise_Sunset struct {
 
 type Sun_Time struct {
   Sun_Hour    C.int
-  First_Lighr C.int
+  First_Light C.int
   Talit       C.int
   Sunrise     C.int
   MidDay      C.int
