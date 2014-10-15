@@ -308,7 +308,6 @@ func Get_UTC_Sun_Time_Full(day, month, year C.int, latitude, longitude C.double)
 /**
 get the Gregorian day of the month
 
-param h pointer this hdate struct.
 return the Gregorian day of the month, 1..31.
 */
 func (h *Hdate_Struct) Get_GDay() C.int {
@@ -318,11 +317,17 @@ func (h *Hdate_Struct) Get_GDay() C.int {
 /**
 get the Gregorian month
 
-param h pointer this hdate struct.
 return the Gregorian month, jan = 1.
 */
 func (h *Hdate_Struct) Get_GMonth() C.int {
   return C.hdate_get_gmonth(&h.d)
 }
 
+/**
+get the Gregorian year
 
+return the Gregorian year.
+*/
+func (h *Hdate_Struct) Get_GYear() C.int {
+  return C.hdate_get_gyear(&h.d)
+}
