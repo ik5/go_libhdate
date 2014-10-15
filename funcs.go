@@ -15,9 +15,16 @@ return Zero'd Hdate_Struct
 */
 func Init() *Hdate_Struct {
 	var h *Hdate_Struct
-	h.Set_Gdate(0, 0, 0)
+  h.d = C.new_hdate()
 
 	return h
+}
+
+/**
+Destruct memory of Hdate_Struct, must be called last
+*/
+func (h *Hdate_Struct) Destruct() {
+  C.delete_hdate(h.d)
 }
 
 /**
@@ -30,8 +37,8 @@ y Year in 4 digits e.g. 2001
 */
 
 func (h *Hdate_Struct) Set_Gdate(d, m, y C.int) {
-	hdate := C.hdate_set_gdate(&h.d, d, m, y)
-	if hdate != &h.d {
+	hdate := C.hdate_set_gdate(h.d, d, m, y)
+	if hdate != h.d {
 		h.d = *hdate
 	}
 }
@@ -45,8 +52,8 @@ m Month 1..14 ,(13 - Adar 1, 14 - Adar 2)
 y Year in 4 digits e.g. 5731
 */
 func (h *Hdate_Struct) Set_Hdate(d, m, y C.int) {
-	hdate := C.hdate_set_hdate(&h.d, d, m, y)
-	if hdate != &h.d {
+	hdate := C.hdate_set_hdate(h.d, d, m, y)
+	if hdate != h.d {
 		h.d = *hdate
 	}
 }
@@ -57,8 +64,8 @@ compute date structure from the Julian day
 jd the julian day number.
 */
 func (h *Hdate_Struct) Set_jd(jd C.int) {
-	hdate := C.hdate_set_jd(&h.d, jd)
-	if hdate != &h.d {
+	hdate := C.hdate_set_jd(h.d, jd)
+	if hdate != h.d {
 		h.d = *hdate
 	}
 }
@@ -81,7 +88,7 @@ func (h *Hdate_Struct) Get_Format_Date(diaspora, s C.int) string {
 	var ch *C.char
 	str := ""
 
-	ch = C.hdate_get_format_date(&h.d, diaspora, s)
+	ch = C.hdate_get_format_date(h.d, diaspora, s)
 	if ch != nil {
 		str = C.GoString(ch)
 		C.free(unsafe.Pointer(ch))
@@ -98,7 +105,7 @@ return the number of parasha 1. Bereshit etc..
   (55 through 61 are joined strings e.g. Vayakhel Pekudei)
 */
 func (h *Hdate_Struct) Get_Parasha(diaspora C.int) C.int {
-	return C.hdate_get_parasha(&h.d, diaspora)
+	return C.hdate_get_parasha(h.d, diaspora)
 }
 
 /**
@@ -108,7 +115,7 @@ diaspora if true give diaspora holidays
 return the number of holiday.
 */
 func (h *Hdate_Struct) Get_Holyday(diaspora C.int) C.int {
-	return C.hdate_get_holyday(&h.d, diaspora)
+	return C.hdate_get_holyday(h.d, diaspora)
 }
 
 /**
@@ -118,7 +125,7 @@ param h The hdate_struct of the date to use.
 return The day in the omer, starting from 1 (or 0 if not in sfirat ha omer)
 */
 func (h *Hdate_Struct) Get_Omer_Day() C.int {
-	return C.hdate_get_omer_day(&h.d)
+	return C.hdate_get_omer_day(h.d)
 }
 
 /**
@@ -323,7 +330,7 @@ get the Gregorian day of the month
 return the Gregorian day of the month, 1..31.
 */
 func (h *Hdate_Struct) Get_GDay() C.int {
-	return C.hdate_get_gday(&h.d)
+	return C.hdate_get_gday(h.d)
 }
 
 /**
@@ -332,7 +339,7 @@ get the Gregorian month
 return the Gregorian month, jan = 1.
 */
 func (h *Hdate_Struct) Get_GMonth() C.int {
-	return C.hdate_get_gmonth(&h.d)
+	return C.hdate_get_gmonth(h.d)
 }
 
 /**
@@ -341,7 +348,7 @@ get the Gregorian year
 return the Gregorian year.
 */
 func (h *Hdate_Struct) Get_GYear() C.int {
-	return C.hdate_get_gyear(&h.d)
+	return C.hdate_get_gyear(h.d)
 }
 
 /**
@@ -350,7 +357,7 @@ get the Hebrew day of the month
 return the Hebrew day of the month, 1..30.
 */
 func (h *Hdate_Struct) Get_HDay() C.int {
-	return C.hdate_get_hday(&h.d)
+	return C.hdate_get_hday(h.d)
 }
 
 /**
@@ -359,7 +366,7 @@ get the Hebrew month
 return the Hebrew month, Tishery = 1 .. Adar I =13, Adar II = 14.
 */
 func (h *Hdate_Struct) Get_HMonth() C.int {
-	return C.hdate_get_hmonth(&h.d)
+	return C.hdate_get_hmonth(h.d)
 }
 
 /**
@@ -368,7 +375,7 @@ get the Hebrew year
 return the Hebrew year.
 */
 func (h *Hdate_Struct) Get_HYear() C.int {
-	return C.hdate_get_hyear(&h.d)
+	return C.hdate_get_hyear(h.d)
 }
 
 /**
@@ -377,7 +384,7 @@ get the day of the week
 return the the day of the week.
 */
 func (h *Hdate_Struct) Get_Day_Of_Week() C.int {
-	return C.hdate_get_day_of_the_week(&h.d)
+	return C.hdate_get_day_of_the_week(h.d)
 }
 
 /**
@@ -386,7 +393,7 @@ get the size of the hebrew year
 return the the size of the hebrew year.
 */
 func (h *Hdate_Struct) Get_Size_of_Year() C.int {
-	return C.hdate_get_size_of_year(&h.d)
+	return C.hdate_get_size_of_year(h.d)
 }
 
 /**
@@ -395,7 +402,7 @@ get the new year day of the week
 return the the new year day of the week.
 */
 func (h *Hdate_Struct) Get_New_Year_Day_of_Week() C.int {
-	return C.hdate_get_new_year_day_of_the_week(&h.d)
+	return C.hdate_get_new_year_day_of_the_week(h.d)
 }
 
 /**
@@ -404,7 +411,7 @@ get the Julian day number
 return the Julian day number.
 */
 func (h *Hdate_Struct) Get_Julian() C.int {
-	return C.hdate_get_julian(&h.d)
+	return C.hdate_get_julian(h.d)
 }
 
 /**
@@ -413,7 +420,7 @@ get the number of days passed since 1 tishrey
 return the number of days passed since 1 tishrey.
 */
 func (h *Hdate_Struct) Get_Days() C.int {
-	return C.hdate_get_days(&h.d)
+	return C.hdate_get_days(h.d)
 }
 
 /**
@@ -422,7 +429,7 @@ get the number of weeks passed since 1 tishrey
 return the number of weeks passed since 1 tishrey.
 */
 func (h *Hdate_Struct) Get_Weeks() C.int {
-	return C.hdate_get_weeks(&h.d)
+	return C.hdate_get_weeks(h.d)
 }
 
 /**
