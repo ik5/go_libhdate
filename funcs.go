@@ -39,7 +39,7 @@ y Year in 4 digits e.g. 2001
 func (h *Hdate_Struct) Set_Gdate(d, m, y C.int) {
 	hdate := C.hdate_set_gdate(h.d, d, m, y)
 	if hdate != h.d {
-		h.d = *hdate
+		h.d = hdate
 	}
 }
 
@@ -54,7 +54,7 @@ y Year in 4 digits e.g. 5731
 func (h *Hdate_Struct) Set_Hdate(d, m, y C.int) {
 	hdate := C.hdate_set_hdate(h.d, d, m, y)
 	if hdate != h.d {
-		h.d = *hdate
+		h.d = hdate
 	}
 }
 
@@ -66,7 +66,7 @@ jd the julian day number.
 func (h *Hdate_Struct) Set_jd(jd C.int) {
 	hdate := C.hdate_set_jd(h.d, jd)
 	if hdate != h.d {
-		h.d = *hdate
+		h.d = hdate
 	}
 }
 
