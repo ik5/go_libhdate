@@ -418,7 +418,7 @@ Return a static string, with the package name and version
 
 return a string, with the package name and version
 */
-func Get_Version_String() string {
+func Get_Version() string {
   return C.GoString(C.hdate_get_version_string())
 }
 
