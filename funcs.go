@@ -394,3 +394,12 @@ return the Julian day number.
 func (h *Hdate_Struct) Get_Julian() C.int {
   return C.hdate_get_julian(&h.d)
 }
+
+/**
+ get the number of days passed since 1 tishrey
+
+ return the number of days passed since 1 tishrey.
+*/
+func (h *Hdate_Struct) Get_Days() C.int {
+  return C.hdate_get_days(&h.d)
+}
