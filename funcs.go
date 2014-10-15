@@ -314,3 +314,15 @@ return the Gregorian day of the month, 1..31.
 func (h *Hdate_Struct) Get_GDay() C.int {
   return C.hdate_get_gday(&h.d)
 }
+
+/**
+get the Gregorian month
+
+param h pointer this hdate struct.
+return the Gregorian month, jan = 1.
+*/
+func (h *Hdate_Struct) Get_GMonth() C.int {
+  return C.hdate_get_gmonth(&h.d)
+}
+
+
