@@ -340,3 +340,12 @@ return the Hebrew day of the month, 1..30.
 func (h *Hdate_Struct) Get_HDay() C.int {
   return C.hdate_get_hday(&h.d)
 }
+
+/**
+get the Hebrew month
+
+return the Hebrew month, Tishery = 1 .. Adar I =13, Adar II = 14.
+*/
+func (h *Hdate_Struct) Get_HMonth() C.int {
+  return C.hdate_get_hmonth(&h.d)
+}
