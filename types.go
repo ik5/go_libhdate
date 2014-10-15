@@ -15,6 +15,6 @@ type Hdate_Julian struct {
 }
 
 type Sunrise_Sunset struct {
-	Sunrise C.double
-	Sunset  C.double
+	Sunrise C.int
+	Sunset  C.int
 }
