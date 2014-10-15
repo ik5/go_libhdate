@@ -358,3 +358,14 @@ return the Hebrew year.
 func (h *Hdate_Struct)Get_HYear() C.int {
   return C.hdate_get_hyear(&h.d)
 }
+
+/**
+get the day of the week
+
+return the the day of the week.
+*/
+func (h *Hdate_Struct) Get_Day_Of_Week() C.int {
+  return C.hdate_get_day_of_the_week(&h.d)
+}
+
+
