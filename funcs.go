@@ -331,3 +331,12 @@ return the Gregorian year.
 func (h *Hdate_Struct) Get_GYear() C.int {
   return C.hdate_get_gyear(&h.d)
 }
+
+/**
+get the Hebrew day of the month
+
+return the Hebrew day of the month, 1..30.
+*/
+func (h *Hdate_Struct) Get_HDay() C.int {
+  return C.hdate_get_hday(&h.d)
+}
