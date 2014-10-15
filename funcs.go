@@ -385,3 +385,12 @@ return the the new year day of the week.
 func (h *Hdate_Struct) Get_New_Year_Day_of_Week() C.int {
   return C.hdate_get_new_year_day_of_the_week(&h.d)
 }
+
+/**
+get the Julian day number
+
+return the Julian day number.
+*/
+func (h *Hdate_Struct) Get_Julian() C.int {
+  return C.hdate_get_julian(&h.d)
+}
