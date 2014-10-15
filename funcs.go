@@ -206,5 +206,5 @@ param year this year
 return the days from 1 jan
 */
 func Get_Day_of_Year(day, month, year C.int) C.int {
-  return C.hdate_get_day_of_year(day, month, year)
+	return C.hdate_get_day_of_year(day, month, year)
 }
