@@ -349,3 +349,12 @@ return the Hebrew month, Tishery = 1 .. Adar I =13, Adar II = 14.
 func (h *Hdate_Struct) Get_HMonth() C.int {
   return C.hdate_get_hmonth(&h.d)
 }
+
+/**
+get the Hebrew year
+
+return the Hebrew year.
+*/
+func (h *Hdate_Struct)Get_HYear() C.int {
+  return C.hdate_get_hyear(&h.d)
+}
