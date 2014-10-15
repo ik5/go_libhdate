@@ -20,7 +20,7 @@ type Sunrise_Sunset struct {
 }
 
 type Sun_Time struct {
-  Sun_Hourt    C.int
+  Sun_Hour     C.int
   First_Lighr  C.int
   Talit        C.int
   Sunrise      C.int
