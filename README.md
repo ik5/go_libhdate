@@ -12,6 +12,7 @@ To install the package:
 
 Simple usage:
 
+```go
     package main
 
     import (
