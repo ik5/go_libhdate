@@ -7,7 +7,6 @@ package hdate
 */
 import "C"
 import "unsafe"
-import "fmt"
 
 /**
 Initialize the Hdate_Struct
@@ -15,10 +14,9 @@ Initialize the Hdate_Struct
 return Zero'd Hdate_Struct
 */
 func Init() *Hdate_Struct {
-	var h *Hdate_Struct
+	var h *Hdate_Struct = new(Hdate_Struct)
   var d *C.hdate_struct
   d = C.new_hdate()
-  fmt.Printf("%v", d)
   h.d = d
 
 	return h
