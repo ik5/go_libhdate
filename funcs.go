@@ -438,3 +438,12 @@ func Get_Translator() string {
   return result
 }
 
+/**
+Helper function to find Hebrew local
+
+return true if Hebrew locale
+*/
+func Is_Hebrew_Locale() bool {
+  locale := C.hdate_is_hebrew_locale()
+  return locale == -1
+}
