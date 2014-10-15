@@ -265,3 +265,44 @@ func Get_UTC_Sun_Time(day, month, year C.int, latitude, longitude C.double) Sunr
     Sunset: sunset,
   }
 }
+
+/**
+utc sunrise/set time for a gregorian date
+
+param day this day of month
+param month this month
+param year this year
+param longitude longitude to use in calculations
+param latitude latitude to use in calculations
+
+returns
+param sun_hour return the length of shaa zaminit in minutes
+param first_light return the utc alut ha-shachar in minutes
+param talit return the utc tphilin and talit in minutes
+param sunrise return the utc sunrise in minutes
+param midday return the utc midday in minutes
+param sunset return the utc sunset in minutes
+param first_stars return the utc tzeit hacochavim in minutes
+param three_stars return the utc shlosha cochavim in minutes
+*/
+func Get_UTC_Sun_Time_Full(day, month, year C.int, latitude, longitude C.double) Sun_Time {
+  var sun_hour, first_light, talit, sunrise, midday, sunset C.int
+  var first_stars, three_stars C.int
+
+  C.hdate_get_utc_sun_time_full(day, month, year, latitude, longitude,
+  &sun_hour, &first_light, &talit, &sunrise, &midday, &sunset,
+  &first_stars, &three_stars)
+
+  return Sun_Time{
+    Sun_Hour: sun_hour,
+    First_Light: first_light,
+    Talit: talit,
+    Sunrise: sunrise,
+    MidDay: midday,
+    Sunset: sunset,
+    First_Stars: first_stars,
+    Three_Stars: three_stars,
+  }
+}
+
+
