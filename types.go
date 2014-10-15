@@ -13,3 +13,8 @@ type Hdate_Julian struct {
 	JD_Tishrey1_Next_Year C.int
 	Day                   C.int
 }
+
+type Sunrise_Sunset struct {
+	Sunrse C.double
+	Sunset C.double
+}
