@@ -403,3 +403,14 @@ func (h *Hdate_Struct) Get_Julian() C.int {
 func (h *Hdate_Struct) Get_Days() C.int {
   return C.hdate_get_days(&h.d)
 }
+
+/**
+ get the number of weeks passed since 1 tishrey
+
+ return the number of weeks passed since 1 tishrey.
+*/
+func (h *Hdate_Struct)Get_Weeks() C.int {
+  return C.hdate_get_weeks(&h.d)
+}
+
+
