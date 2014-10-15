@@ -12,24 +12,24 @@ To install the package:
 
 Simple usage:
 
-     package main
+    package main
 
-     import (
-             "fmt"
-             "github.com/ik5/go_libhdate"
-     )
+    import (
+            "fmt"
+            "github.com/ik5/go_libhdate"
+    )
 
-     func main() {
-          h := hdate.Init()
-          defer h.Destruct()
+    func main() {
+         h := hdate.Init()
+         defer h.Destruct()
 
-          // Gregorian date
-          fmt.Println("Today is:")
-          fmt.Printf("%d, %d, %d\n", h.Get_GDay(), h.Get_GMonth(), h.Get_GYear())
+         // Gregorian date
+         fmt.Println("Today is:")
+         fmt.Printf("%d, %d, %d\n", h.Get_GDay(), h.Get_GMonth(), h.Get_GYear())
 
-          // print hebrew date: 0 - israely holidays, 0 - long format
-          fmt.Printf("%s\n\n", h.Get_Format_Date(0, 0))
-     }
+         // print hebrew date: 0 - israely holidays, 0 - long format
+         fmt.Printf("%s\n\n", h.Get_Format_Date(0, 0))
+    }
 
 
 License
