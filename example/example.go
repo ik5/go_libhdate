@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/ik5/go_libhdate"
-  "time"
+	"time"
 )
 
 func basic() {
@@ -52,48 +52,48 @@ func city_info() {
 	h := hdate.Init()
 	defer h.Destruct()
 
-  now     := time.Now()
-//  _, zone := now.Zone()
+	now := time.Now()
+	//  _, zone := now.Zone()
 
-  fmt.Printf("Current Time: %02d:%02d:%02d\n", now.Hour(), now.Minute(), now.Second())
+	fmt.Printf("Current Time: %02d:%02d:%02d\n", now.Hour(), now.Minute(), now.Second())
 
-  for _, v := range(Cities) {
-    long := v.Longitude
-    lat  := v.Latitude
-    name := v.Name
+	for _, v := range Cities {
+		long := v.Longitude
+		lat := v.Latitude
+		name := v.Name
 
-    fmt.Printf("City: %s\n", name)
-    fmt.Printf("\tLatitude: %2.2f\n", lat)
-    fmt.Printf("\tLongitude: %2.2f\n", long)
+		fmt.Printf("City: %s\n", name)
+		fmt.Printf("\tLatitude: %2.2f\n", lat)
+		fmt.Printf("\tLongitude: %2.2f\n", long)
 
-    // print Time using a degree of sunrise/sunset
-    deg := 90
-    fmt.Printf("\tDegree: %d\n", deg)
+		// print Time using a degree of sunrise/sunset
+		deg := 90
+		fmt.Printf("\tDegree: %d\n", deg)
 
-    sun := hdate.Get_UTC_Sun_Time_Deg(now.Day(), int(now.Month()),
-    now.Year(), long, lat, float64(deg))
-//    sunrise := int64(sun.Sunrise + zone * 60)
-//    sunset  := int64(sun.Sunset + zone * 60)
+		sun := hdate.Get_UTC_Sun_Time_Deg(now.Day(), int(now.Month()),
+			now.Year(), long, lat, float64(deg))
+		//    sunrise := int64(sun.Sunrise + zone * 60)
+		//    sunset  := int64(sun.Sunset + zone * 60)
 
-    fmt.Printf("\tHours of sunrise: %d\n", sun.Sunrise / 60)
-    fmt.Printf("\tHours of sunset: %d\n", sun.Sunset / 60)
+		fmt.Printf("\tHours of sunrise: %d\n", sun.Sunrise/60)
+		fmt.Printf("\tHours of sunset: %d\n", sun.Sunset/60)
 
-    full_time := hdate.Get_UTC_Sun_Time_Full(now.Day(), int(now.Month()),
-    now.Year(), long, lat)
+		full_time := hdate.Get_UTC_Sun_Time_Full(now.Day(), int(now.Month()),
+			now.Year(), long, lat)
 
-    fmt.Printf("\tTemporary hour length: %d\n", full_time.Sun_Hour )
-    fmt.Printf("\tFirst light: %d\n", full_time.First_Light / 60)
-    fmt.Printf("\tTalit time: %d\n", full_time.Talit / 60)
-    fmt.Printf("\tFull Sunrise: %d\n", full_time.Sunrise / 60)
-    fmt.Printf("\tFull Sunset: %d\n", full_time.Sunset / 60)
-    fmt.Printf("\tFirst stars: %d\n", full_time.First_Stars / 60)
-    fmt.Printf("\tThree stars: %d\n", full_time.Three_Stars / 60)
+		fmt.Printf("\tTemporary hour length: %d\n", full_time.Sun_Hour)
+		fmt.Printf("\tFirst light: %d\n", full_time.First_Light/60)
+		fmt.Printf("\tTalit time: %d\n", full_time.Talit/60)
+		fmt.Printf("\tFull Sunrise: %d\n", full_time.Sunrise/60)
+		fmt.Printf("\tFull Sunset: %d\n", full_time.Sunset/60)
+		fmt.Printf("\tFirst stars: %d\n", full_time.First_Stars/60)
+		fmt.Printf("\tThree stars: %d\n", full_time.Three_Stars/60)
 
-    fmt.Println("")
-  }
+		fmt.Println("")
+	}
 }
 
 func main() {
 	basic()
-  city_info()
+	city_info()
 }
