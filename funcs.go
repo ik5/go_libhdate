@@ -9,6 +9,18 @@ import "C"
 import "unsafe"
 
 /**
+Initialize the Hdate_Struct
+
+return Zero'd Hdate_Struct
+*/
+func Init() (*Hdate_Struct) {
+  var h *Hdate_Struct
+  h.Set_Gdate(0, 0, 0)
+
+  return h
+}
+
+/**
 compute date structure from the Gregorian date
 
 d Day of month 1..31
