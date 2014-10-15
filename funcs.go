@@ -368,4 +368,11 @@ func (h *Hdate_Struct) Get_Day_Of_Week() C.int {
   return C.hdate_get_day_of_the_week(&h.d)
 }
 
+/**
+get the size of the hebrew year
 
+return the the size of the hebrew year.
+*/
+func (h *Hdate_Struct) Get_Size_of_Year() C.int {
+  return C.hdate_get_size_of_year(&h.d)
+}
