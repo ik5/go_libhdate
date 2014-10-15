@@ -422,5 +422,19 @@ func Get_Version_String() string {
   return C.GoString(C.hdate_get_version_string())
 }
 
+/**
+name of translator
 
+return a string with name of translator, or empty string if none.
+*/
+func Get_Translator() string {
+  trans := C.hdate_get_translator_string()
+  result := ""
+
+  if (trans != nil) {
+    result = C.GoString(trans)
+  }
+
+  return result
+}
 
