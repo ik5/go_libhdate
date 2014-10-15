@@ -241,4 +241,27 @@ func Get_UTC_Sun_Time_Deg(day, month, year C.int, latitude, longitude, deg C.dou
   }
 }
 
+/**
+utc sunrise/set time for a gregorian date
 
+param day this day of month
+param month this month
+param year this year
+param longitude longitude to use in calculations
+degrees, negative values are east
+param latitude latitude to use in calculations
+degrees, negative values are south
+
+returns
+param sunrise return the utc sunrise in minutes after midnight (00:00)
+param sunset return the utc sunset in minutes after midnight (00:00)
+*/
+func Get_UTC_Sun_Time(day, month, year C.int, latitude, longitude C.double) Sunrise_Sunset {
+  var sunrise, sunset C.int
+  C.hdate_get_utc_sun_time(day, month, year, latitude, longitude, &sunrise, &sunset)
+
+  return Sunrise_Sunset{
+    Sunrise: sunrise,
+    Sunset: sunset,
+  }
+}
