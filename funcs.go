@@ -13,11 +13,11 @@ Initialize the Hdate_Struct
 
 return Zero'd Hdate_Struct
 */
-func Init() (*Hdate_Struct) {
-  var h *Hdate_Struct
-  h.Set_Gdate(0, 0, 0)
+func Init() *Hdate_Struct {
+	var h *Hdate_Struct
+	h.Set_Gdate(0, 0, 0)
 
-  return h
+	return h
 }
 
 /**
@@ -244,13 +244,13 @@ param sunrise return the utc sunrise in minutes
 param sunset return the utc sunset in minutes
 */
 func Get_UTC_Sun_Time_Deg(day, month, year C.int, latitude, longitude, deg C.double) Sunrise_Sunset {
-  var sunrise, sunset C.int
-  C.hdate_get_utc_sun_time_deg(day, month, year, latitude, longitude, deg, &sunrise, &sunset)
+	var sunrise, sunset C.int
+	C.hdate_get_utc_sun_time_deg(day, month, year, latitude, longitude, deg, &sunrise, &sunset)
 
-  return Sunrise_Sunset{
-    Sunrise: sunrise,
-    Sunset: sunset,
-  }
+	return Sunrise_Sunset{
+		Sunrise: sunrise,
+		Sunset:  sunset,
+	}
 }
 
 /**
@@ -269,13 +269,13 @@ param sunrise return the utc sunrise in minutes after midnight (00:00)
 param sunset return the utc sunset in minutes after midnight (00:00)
 */
 func Get_UTC_Sun_Time(day, month, year C.int, latitude, longitude C.double) Sunrise_Sunset {
-  var sunrise, sunset C.int
-  C.hdate_get_utc_sun_time(day, month, year, latitude, longitude, &sunrise, &sunset)
+	var sunrise, sunset C.int
+	C.hdate_get_utc_sun_time(day, month, year, latitude, longitude, &sunrise, &sunset)
 
-  return Sunrise_Sunset{
-    Sunrise: sunrise,
-    Sunset: sunset,
-  }
+	return Sunrise_Sunset{
+		Sunrise: sunrise,
+		Sunset:  sunset,
+	}
 }
 
 /**
@@ -298,23 +298,23 @@ param first_stars return the utc tzeit hacochavim in minutes
 param three_stars return the utc shlosha cochavim in minutes
 */
 func Get_UTC_Sun_Time_Full(day, month, year C.int, latitude, longitude C.double) Sun_Time {
-  var sun_hour, first_light, talit, sunrise, midday, sunset C.int
-  var first_stars, three_stars C.int
+	var sun_hour, first_light, talit, sunrise, midday, sunset C.int
+	var first_stars, three_stars C.int
 
-  C.hdate_get_utc_sun_time_full(day, month, year, latitude, longitude,
-  &sun_hour, &first_light, &talit, &sunrise, &midday, &sunset,
-  &first_stars, &three_stars)
+	C.hdate_get_utc_sun_time_full(day, month, year, latitude, longitude,
+		&sun_hour, &first_light, &talit, &sunrise, &midday, &sunset,
+		&first_stars, &three_stars)
 
-  return Sun_Time{
-    Sun_Hour: sun_hour,
-    First_Light: first_light,
-    Talit: talit,
-    Sunrise: sunrise,
-    MidDay: midday,
-    Sunset: sunset,
-    First_Stars: first_stars,
-    Three_Stars: three_stars,
-  }
+	return Sun_Time{
+		Sun_Hour:    sun_hour,
+		First_Light: first_light,
+		Talit:       talit,
+		Sunrise:     sunrise,
+		MidDay:      midday,
+		Sunset:      sunset,
+		First_Stars: first_stars,
+		Three_Stars: three_stars,
+	}
 }
 
 /**
@@ -323,7 +323,7 @@ get the Gregorian day of the month
 return the Gregorian day of the month, 1..31.
 */
 func (h *Hdate_Struct) Get_GDay() C.int {
-  return C.hdate_get_gday(&h.d)
+	return C.hdate_get_gday(&h.d)
 }
 
 /**
@@ -332,7 +332,7 @@ get the Gregorian month
 return the Gregorian month, jan = 1.
 */
 func (h *Hdate_Struct) Get_GMonth() C.int {
-  return C.hdate_get_gmonth(&h.d)
+	return C.hdate_get_gmonth(&h.d)
 }
 
 /**
@@ -341,7 +341,7 @@ get the Gregorian year
 return the Gregorian year.
 */
 func (h *Hdate_Struct) Get_GYear() C.int {
-  return C.hdate_get_gyear(&h.d)
+	return C.hdate_get_gyear(&h.d)
 }
 
 /**
@@ -350,7 +350,7 @@ get the Hebrew day of the month
 return the Hebrew day of the month, 1..30.
 */
 func (h *Hdate_Struct) Get_HDay() C.int {
-  return C.hdate_get_hday(&h.d)
+	return C.hdate_get_hday(&h.d)
 }
 
 /**
@@ -359,7 +359,7 @@ get the Hebrew month
 return the Hebrew month, Tishery = 1 .. Adar I =13, Adar II = 14.
 */
 func (h *Hdate_Struct) Get_HMonth() C.int {
-  return C.hdate_get_hmonth(&h.d)
+	return C.hdate_get_hmonth(&h.d)
 }
 
 /**
@@ -367,8 +367,8 @@ get the Hebrew year
 
 return the Hebrew year.
 */
-func (h *Hdate_Struct)Get_HYear() C.int {
-  return C.hdate_get_hyear(&h.d)
+func (h *Hdate_Struct) Get_HYear() C.int {
+	return C.hdate_get_hyear(&h.d)
 }
 
 /**
@@ -377,7 +377,7 @@ get the day of the week
 return the the day of the week.
 */
 func (h *Hdate_Struct) Get_Day_Of_Week() C.int {
-  return C.hdate_get_day_of_the_week(&h.d)
+	return C.hdate_get_day_of_the_week(&h.d)
 }
 
 /**
@@ -386,7 +386,7 @@ get the size of the hebrew year
 return the the size of the hebrew year.
 */
 func (h *Hdate_Struct) Get_Size_of_Year() C.int {
-  return C.hdate_get_size_of_year(&h.d)
+	return C.hdate_get_size_of_year(&h.d)
 }
 
 /**
@@ -395,7 +395,7 @@ get the new year day of the week
 return the the new year day of the week.
 */
 func (h *Hdate_Struct) Get_New_Year_Day_of_Week() C.int {
-  return C.hdate_get_new_year_day_of_the_week(&h.d)
+	return C.hdate_get_new_year_day_of_the_week(&h.d)
 }
 
 /**
@@ -404,25 +404,25 @@ get the Julian day number
 return the Julian day number.
 */
 func (h *Hdate_Struct) Get_Julian() C.int {
-  return C.hdate_get_julian(&h.d)
+	return C.hdate_get_julian(&h.d)
 }
 
 /**
- get the number of days passed since 1 tishrey
+get the number of days passed since 1 tishrey
 
- return the number of days passed since 1 tishrey.
+return the number of days passed since 1 tishrey.
 */
 func (h *Hdate_Struct) Get_Days() C.int {
-  return C.hdate_get_days(&h.d)
+	return C.hdate_get_days(&h.d)
 }
 
 /**
- get the number of weeks passed since 1 tishrey
+get the number of weeks passed since 1 tishrey
 
- return the number of weeks passed since 1 tishrey.
+return the number of weeks passed since 1 tishrey.
 */
-func (h *Hdate_Struct)Get_Weeks() C.int {
-  return C.hdate_get_weeks(&h.d)
+func (h *Hdate_Struct) Get_Weeks() C.int {
+	return C.hdate_get_weeks(&h.d)
 }
 
 /**
@@ -431,7 +431,7 @@ Return a static string, with the package name and version
 return a string, with the package name and version
 */
 func Get_Version() string {
-  return C.GoString(C.hdate_get_version_string())
+	return C.GoString(C.hdate_get_version_string())
 }
 
 /**
@@ -440,14 +440,14 @@ name of translator
 return a string with name of translator, or empty string if none.
 */
 func Get_Translator() string {
-  trans := C.hdate_get_translator_string()
-  result := ""
+	trans := C.hdate_get_translator_string()
+	result := ""
 
-  if (trans != nil) {
-    result = C.GoString(trans)
-  }
+	if trans != nil {
+		result = C.GoString(trans)
+	}
 
-  return result
+	return result
 }
 
 /**
@@ -456,8 +456,8 @@ Helper function to find Hebrew local
 return true if Hebrew locale
 */
 func Is_Hebrew_Locale() bool {
-  locale := C.hdate_is_hebrew_locale()
-  return locale == -1
+	locale := C.hdate_is_hebrew_locale()
+	return locale == -1
 }
 
 /**
@@ -479,13 +479,13 @@ func Is_Hebrew_Locale() bool {
          return empty string upon failure.
 */
 func Hdate_String(string_type, index, short_form, hebrew_form C.int) string {
-  ch := C.hdate_string(string_type, index, short_form, hebrew_form)
-  result := ""
+	ch := C.hdate_string(string_type, index, short_form, hebrew_form)
+	result := ""
 
-  if ch != nil {
-    result = C.GoString(ch)
-    C.free(unsafe.Pointer(ch))
-  }
+	if ch != nil {
+		result = C.GoString(ch)
+		C.free(unsafe.Pointer(ch))
+	}
 
-  return result
+	return result
 }
