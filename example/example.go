@@ -64,21 +64,25 @@ var Cities = [...]City_Struct{
 	{Latitude: 31.93, Longitude: 34.86, TimeZone: 2 * 60, Name: "Ramla"},
 }
 
-var dayLightSaving = 1 * 60
-
 func city_info() {
 	h := hdate.Init()
 	defer h.Destruct()
 
 	now := time.Now()
-	//  _, zone := now.Zone()
 
 	fmt.Printf("Current Time: %02d:%02d:%02d\n", now.Hour(), now.Minute(), now.Second())
 
 	for _, v := range Cities {
 		long := v.Longitude
 		lat := v.Latitude
+		tz := v.TimeZone
 		name := v.Name
+
+		calc_timezone := func(a_time int) (int, int) {
+			const day_light_saving = 1 * 60
+			calc := a_time + tz + day_light_saving
+			return calc / 60, calc % 60
+		}
 
 		fmt.Printf("City: %s\n", name)
 		fmt.Printf("\tLatitude: %2.2f\n", lat)
@@ -90,36 +94,34 @@ func city_info() {
 
 		sun := hdate.Get_UTC_Sun_Time_Deg(now.Day(), int(now.Month()),
 			now.Year(), long, lat, float64(deg))
-		//    sunrise := int64(sun.Sunrise + zone * 60)
-		//    sunset  := int64(sun.Sunset + zone * 60)
 
-		t := sun.Sunrise + v.TimeZone + dayLightSaving
-		fmt.Printf("\tHours of sunrise: %02d:%02d\n", t/60, t%60)
-		t = sun.Sunset + v.TimeZone + dayLightSaving
-		fmt.Printf("\tHours of sunset: %02d:%02d\n", t/60, t%60)
+		h, m := calc_timezone(sun.Sunrise)
+		fmt.Printf("\tHours of sunrise: %02d:%02d\n", h, m)
+		h, m = calc_timezone(sun.Sunset)
+		fmt.Printf("\tHours of sunset: %02d:%02d\n", h, m)
 
 		full_time := hdate.Get_UTC_Sun_Time_Full(now.Day(), int(now.Month()),
 			now.Year(), long, lat)
 
-		fmt.Printf("\tTemporary hour length: %.02f\n", full_time.Sun_Hour)
+		fmt.Printf("\tTemporary hour length: %2d\n", full_time.Sun_Hour)
 
-		t = full_time.First_Light + v.TimeZone + dayLightSaving
-		fmt.Printf("\tFirst light: %02d:%02d\n", t/60, t%60)
+		h, m = calc_timezone(full_time.First_Light)
+		fmt.Printf("\tFirst light: %02d:%02d\n", h, m)
 
-		t = full_time.Talit + v.TimeZone + dayLightSaving
-		fmt.Printf("\tTalit time: %02d:%02d\n", t/60, t%60)
+		h, m = calc_timezone(full_time.Talit)
+		fmt.Printf("\tTalit time: %02d:%02d\n", h, m)
 
-		t = full_time.Sunrise + v.TimeZone + dayLightSaving
-		fmt.Printf("\tFull Sunrise: %02d:%02d\n", t/60, t%60)
+		h, m = calc_timezone(full_time.Sunrise)
+		fmt.Printf("\tFull Sunrise: %02d:%02d\n", h, m)
 
-		t = full_time.Sunset + v.TimeZone + dayLightSaving
-		fmt.Printf("\tFull Sunset: %02d:%02d\n", t/60, t%60)
+		h, m = calc_timezone(full_time.Sunset)
+		fmt.Printf("\tFull Sunset: %02d:%02d\n", h, m)
 
-		t = full_time.First_Stars + v.TimeZone + dayLightSaving
-		fmt.Printf("\tFirst stars: %02d:%02d\n", t/60, t%60)
+		h, m = calc_timezone(full_time.First_Stars)
+		fmt.Printf("\tFirst stars: %02d:%02d\n", h, m)
 
-		t = full_time.Three_Stars + v.TimeZone + dayLightSaving
-		fmt.Printf("\tThree stars: %02d:%02d\n", t/60, t%60)
+		h, m = calc_timezone(full_time.Three_Stars)
+		fmt.Printf("\tThree stars: %02d:%02d\n", h, m)
 
 		fmt.Println("")
 	}
