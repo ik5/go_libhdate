@@ -15,6 +15,11 @@ To install the package:
 
     go get github.com/ik5/go_libhdate
 
+A mirror could be found at bitbacket:
+
+    go get bitbucket.org/ik_5/go_libhdate
+
+
 Simple usage:
 
 ```go
