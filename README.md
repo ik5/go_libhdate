@@ -2,7 +2,7 @@ hdate
 =====
 The following Go package is a binding for the C library named libhdate in Go.
 
-In order to use stable version, please use the stable/xxx branches.
+In order to use stable version, please use the stable/xxx branches. \
 devel/xxx and master are always unstable branches.
 
 Example
